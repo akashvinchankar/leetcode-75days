@@ -1,11 +1,8 @@
-public class Solution {
-    static boolean[][] visited;
+class Solution {
     public boolean exist(char[][] board, String word) {
-        visited = new boolean[board.length][board[0].length];
-        
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[i].length; j++){
-                if((word.charAt(0) == board[i][j]) && search(board, word, i, j, 0)){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (search(board, word, 0, i, j)) {
                     return true;
                 }
             }
@@ -14,24 +11,35 @@ public class Solution {
         return false;
     }
     
-    private boolean search(char[][]board, String word, int i, int j, int index){
-        if(index == word.length()){
-            return true;
-        }
-        
-        if(i >= board.length || i < 0 || j >= board[i].length || j < 0 || board[i][j] != word.charAt(index) || visited[i][j]){
+    public boolean search(char[][] board, String word, int idx, int y, int x) {
+        if (y < 0 || x < 0 || y >= board.length || x >= board[0].length) {
             return false;
         }
+        char c = board[y][x];
+        if (c != word.charAt(idx)) {
+            return false;
+        }
+        if (idx == word.length() - 1) {
+            return true;
+        }
+
+        board[y][x] = '.';
         
-        visited[i][j] = true;
-        if(search(board, word, i-1, j, index+1) || 
-           search(board, word, i+1, j, index+1) ||
-           search(board, word, i, j-1, index+1) || 
-           search(board, word, i, j+1, index+1)){
+        if (search(board, word, idx + 1, y + 1, x)) {
+            return true;
+        }
+        if (search(board, word, idx + 1, y - 1, x)) {
+            return true;
+        }
+        if (search(board, word, idx + 1, y, x + 1)) {
+            return true;
+        }
+        if (search(board, word, idx + 1, y, x - 1)) {
             return true;
         }
         
-        visited[i][j] = false;
+        board[y][x] = c;
+        
         return false;
     }
 }
