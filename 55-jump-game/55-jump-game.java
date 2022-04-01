@@ -6,7 +6,7 @@ class Solution {
 
             curFar = Math.max(curFar, i + nums[i]);
             
-            if(curFar >= nums.length -1 ) {
+            if(curFar >= nums.length - 1 ) {
                 return true;
             }
         }
