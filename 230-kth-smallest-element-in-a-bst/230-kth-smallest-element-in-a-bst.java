@@ -15,7 +15,7 @@
  */
 class Solution {
     int count = 0;
-    int result = Integer.MIN_VALUE;
+    int result = 0;
 
     public int kthSmallest(TreeNode root, int k) {
         traverse(root, k);
