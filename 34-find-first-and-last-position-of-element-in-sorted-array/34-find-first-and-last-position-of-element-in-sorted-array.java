@@ -14,7 +14,7 @@ class Solution {
         return new int[]{l,r};
     }
     
-    public int find(int[] nums,int l,int r,int target){
+    public int find(int[] nums, int l, int r, int target){
         
         while(l < r){
             int mid = l + (r - l) / 2;
