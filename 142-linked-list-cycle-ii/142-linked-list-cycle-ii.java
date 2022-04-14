@@ -23,11 +23,12 @@ public class Solution {
             fast = fast.next.next;
             
             if(slow == fast) {
-                while(head != fast) {
+                slow = head;
+                while(slow != fast) {
                     fast = fast.next;
-                    head = head.next;
+                    slow = slow.next;
                 }
-                return head;
+                return slow;
             }
         }
         return null;
