@@ -26,8 +26,9 @@ class Solution {
         curr.next = head;
         n = len - n % len;
         
-        while(n-- > 0) {
+        while(n != 0) {
             curr = curr.next;
+            n--;
         }
         
         head = curr.next;
