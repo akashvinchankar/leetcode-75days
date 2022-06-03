@@ -1,13 +1,13 @@
 class Solution {
 
-    public boolean isValid(String s) {
-        Stack<Character> st = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+    public boolean isValid(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
             if (ch == '(' || ch == '[' || ch == '{') {
-                st.push(ch);
-            } else if (st.size() != 0) {
-                char popped = st.pop();
+                stack.push(ch);
+            } else if (stack.size() != 0) {
+                char popped = stack.pop();
                 if (ch == ')') {
                     if (popped != '(') return false;
                 } else if (ch == ']') {
@@ -17,7 +17,7 @@ class Solution {
                 }
             } else return false;
         }
-        if (st.size() > 0) return false;
+        if (stack.size() > 0) return false;
         return true;
     }
 }
