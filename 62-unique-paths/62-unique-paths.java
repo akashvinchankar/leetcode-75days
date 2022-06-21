@@ -1,14 +1,17 @@
 class Solution {
 
     public int uniquePaths(int m, int n) {
-        int UpperBound = m + n - 2; // (0,0) - (m-1,n-1) => (m - 1) + (n - 1)
-        int lowerBound = m - 1; // LowerBound either m - 1 or n - 1
-        double paths = 1;
-        // Find the number of combinations of path
-        for (int i = 1; i <= lowerBound; i++) {
-            paths = paths * (UpperBound - lowerBound + i) / i;
-        }
+        int[][] dp = new int[m][n];
 
-        return (int) paths;
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (i == m - 1 || j == n - 1) {
+                    dp[i][j] = 1;
+                } else {
+                    dp[i][j] = dp[i][j + 1] + dp[i + 1][j];
+                }
+            }
+        }
+        return dp[0][0];
     }
 }
