@@ -14,25 +14,23 @@
  * }
  */
 class Solution {
-    private boolean result = true;
 
     public boolean isBalanced(TreeNode root) {
-        if(root == null) return true;
-        depth(root);
-        return result;
+        return depth(root) != -1;
     }
-    
+
     public int depth(TreeNode root) {
-        if(root == null) return 0;
-        
-        int left = depth(root.left);
-        int right = depth(root.right);
-        
-        int max = Math.max(left, right) + 1;   // to add 1 on each level of BT
-         
-        if(Math.abs(left - right) > 1) {
-            result = false;
-        }
-        return max;
+        if (root == null) return 0;
+
+        int leftHeight = depth(root.left);
+        if (leftHeight == -1) return -1;
+
+        int rightHeight = depth(root.right);
+        if (rightHeight == -1) return -1;
+
+        if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+
+        // to add 1 on each level of BT
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 }
